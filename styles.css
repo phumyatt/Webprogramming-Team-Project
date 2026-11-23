@@ -141,3 +141,147 @@ body {
     font-size: 16px;
   }
 }
+
+
+/* MENU SECTION */
+.menu {
+  padding: 90px 8%;
+  background-color: #111;
+  color: white;
+}
+
+/* MENU HEADING */
+.menu-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.menu-heading h2 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.menu-heading h2 span {
+  color: #ff7518;
+}
+
+.menu-heading p {
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* MENU GRID */
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+/* FOOD CARD */
+.menu-card {
+  min-width: 0;
+  background-color: #1c1c1c;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #333;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(255, 117, 24, 0.15);
+}
+
+/* FOOD IMAGE */
+.menu-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* FOOD INFORMATION */
+.menu-info {
+  padding: 22px;
+}
+
+.menu-info h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #ff7518;
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+/* DETAILS BUTTON */
+.details-btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #ff7518, #ff3030);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.details-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* FOOD DESCRIPTION */
+.food-description {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+.food-description[hidden] {
+  display: none;
+}
+
+/* ORDER BUTTON */
+.food-order-btn {
+  display: inline-block;
+  margin-top: 15px;
+  color: #ff7518;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.food-order-btn:hover {
+  color: #ff3030;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  .menu-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .menu {
+    padding: 65px 6%;
+  }
+
+  .menu-heading h2 {
+    font-size: 34px;
+  }
+
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-card img {
+    height: 230px;
+  }
+}
+

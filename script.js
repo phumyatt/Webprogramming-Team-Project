@@ -1,4 +1,7 @@
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  // NAVIGATION
   const navLinks = document.querySelectorAll(".navbar a");
 
   navLinks.forEach(link => {
@@ -10,10 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.add("active");
     });
   });
-});
 
-// Additional JavaScript features will be added here.
-// Menu description toggle
-// Search or cart
-// Contact form validation
-// Dynamic footer date and time
+  // MENU DETAILS
+  const detailButtons = document.querySelectorAll(".details-btn");
+
+  detailButtons.forEach(button => {
+    button.addEventListener("click", () => {
+
+      const description = button.nextElementSibling;
+      description.hidden = !description.hidden;
+
+      if (description.hidden) {
+        button.textContent = "View Details";
+      } else {
+        button.textContent = "Hide Details";
+      }
+
+    });
+  });
+
+});
