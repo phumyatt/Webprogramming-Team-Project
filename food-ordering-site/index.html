@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Food Ordering – Menu</title>
+  <meta name="description" content="Order Mongolian, Malaysian, Thai, Korean and Japanese food, plus soft drinks, online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400..600,0..1,0&display=block">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       PLACEHOLDER HEADER + NAV  (teammate's part – replace with the
+       group's real header. Just keep a link to #menu.)
+       ============================================================ -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#home" class="site-logo"><span class="site-logo__mark ms" aria-hidden="true">restaurant</span><span>Online Food Ordering</span></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <!-- ============================================================
+         MENU SECTION  (Featured Menu + Food & Beverage Ordering)
+         Everything for this section lives between START and END.
+         CSS classes all start with .menu-  /  JS lives in initMenu()
+         ============================================================ -->
+    <!-- ===== MENU SECTION START ===== -->
+    <section id="menu" class="menu-section" aria-labelledby="menu-title">
+
+      <header class="menu-hero">
+        <div class="menu-hero__text">
+          <p class="menu-hero__eyebrow">Asian Kitchen · Delivery</p>
+          <h2 id="menu-title" class="menu-hero__title">Fresh, <span class="menu-hl">hot food</span> delivered within 40 minutes</h2>
+          <p class="menu-hero__sub">Mongolian, Malaysian, Thai, Korean and Japanese favourites, plus cold drinks — cooked to order and brought to your door.</p>
+          <div class="menu-hero__cta">
+            <a href="#menu-grid" class="menu-btn menu-btn--red">Order now</a>
+            <a href="#menu-categories" class="menu-btn menu-btn--ghost">See categories</a>
+          </div>
+          <ul class="menu-store-info" aria-label="Delivery information">
+            <li><span class="ms" aria-hidden="true">star</span><span><strong>4.8</strong><small>Rating</small></span></li>
+            <li><span class="ms" aria-hidden="true">schedule</span><span><strong>25–40 min</strong><small>Delivery time</small></span></li>
+            <li><span class="ms" aria-hidden="true">delivery_dining</span><span><strong>₩3,000</strong><small>Free over ₩25,000</small></span></li>
+            <li><span class="ms" aria-hidden="true">shopping_bag</span><span><strong>₩10,000</strong><small>Minimum order</small></span></li>
+          </ul>
+        </div>
+        <figure class="menu-hero__plate" data-icon="ramen_dining">
+          <img src="images/tom-yum.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tom_yum_goong-01.jpg?width=800" alt="A bowl of Tom Yum Goong soup" width="420" height="420">
+          <span class="menu-hero__dot menu-hero__dot--1" aria-hidden="true"></span>
+          <span class="menu-hero__dot menu-hero__dot--2" aria-hidden="true"></span>
+          <span class="menu-hero__dot menu-hero__dot--3" aria-hidden="true"></span>
+        </figure>
+      </header>
+
+      <!-- Search + filters -->
+      <div class="menu-toolbar">
+        <form class="menu-search" role="search" onsubmit="return false;">
+          <label for="menu-search-input" class="visually-hidden">Search menu</label>
+          <span class="menu-search__icon ms" aria-hidden="true">search</span>
+          <input id="menu-search-input" type="search" placeholder="Search dishes, e.g. ramen, spicy, noodles…" autocomplete="off">
+        </form>
+
+        <div class="menu-categories" id="menu-categories" role="group" aria-label="Filter by cuisine">
+          <button type="button" class="menu-cat is-active" data-filter="all" aria-pressed="true"><span class="menu-cat__icon ms" aria-hidden="true">restaurant</span>All</button>
+          <button type="button" class="menu-cat" data-filter="mongolian" aria-pressed="false"><span class="menu-cat__icon ms" aria-hidden="true">soup_kitchen</span>Mongolian</button>
+          <button type="button" class="menu-cat" data-filter="malaysian" aria-pressed="false"><span class="menu-cat__icon ms" aria-hidden="true">kebab_dining</span>Malaysian</button>
+          <button type="button" class="menu-cat" data-filter="thai" aria-pressed="false"><span class="menu-cat__icon ms" aria-hidden="true">ramen_dining</span>Thai</button>
+          <button type="button" class="menu-cat" data-filter="korean" aria-pressed="false"><span class="menu-cat__icon ms" aria-hidden="true">rice_bowl</span>Korean</button>
+          <button type="button" class="menu-cat" data-filter="japanese" aria-pressed="false"><span class="menu-cat__icon ms" aria-hidden="true">set_meal</span>Japanese</button>
+          <button type="button" class="menu-cat" data-filter="drinks" aria-pressed="false"><span class="menu-cat__icon ms" aria-hidden="true">local_drink</span>Drinks</button>
+        </div>
+
+        <div class="menu-sortbar">
+          <p class="menu-count" aria-live="polite"><strong id="menu-count">38</strong> items</p>
+          <label for="menu-sort" class="visually-hidden">Sort by</label>
+          <select id="menu-sort" class="menu-sort">
+            <option value="recommended">Recommended</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Menu items (each dish is an <article>) -->
+      <div class="menu-grid" id="menu-grid">
+
+          <article class="menu-card" id="item-khuushuur"
+                   data-id="khuushuur" data-name="Khuushuur (3 pcs)" data-cuisine="mongolian"
+                   data-price="9500" data-rating="4.7" data-drink="false" data-order="0">
+            <figure class="menu-card__media" data-icon="soup_kitchen">
+              <img src="images/khuushuur.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Khuushuur%2CMongolian_Ulaanbaatar_style.JPG?width=640"
+                   alt="Khuushuur (3 pcs) – crispy fried mutton pastries" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Mongolian · <span lang="ko">호쇼르</span></p>
+              <h3 class="menu-card__name">Khuushuur (3 pcs)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 128 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(128)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Crispy fried mutton pastries</p>
+              <a href="#desc-khuushuur" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-khuushuur">View details</a>
+              <p class="menu-card__desc" id="desc-khuushuur" hidden>Golden pan-fried pockets stuffed with minced mutton, onion and garlic. Crispy outside, juicy inside — Mongolia&#x27;s favourite festival snack.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩9,500</strong>
+                <button type="button" class="menu-add js-add" data-id="khuushuur" aria-label="Add Khuushuur (3 pcs) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-buuz"
+                   data-id="buuz" data-name="Buuz Dumplings (6 pcs)" data-cuisine="mongolian"
+                   data-price="10000" data-rating="4.8" data-drink="false" data-order="1">
+            <figure class="menu-card__media" data-icon="soup_kitchen">
+              <img src="images/buuz.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Buuz.jpg?width=640"
+                   alt="Buuz Dumplings (6 pcs) – steamed beef &amp; mutton dumplings" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Mongolian · <span lang="ko">보즈</span></p>
+              <h3 class="menu-card__name">Buuz Dumplings (6 pcs)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 96 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(96)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Steamed beef &amp; mutton dumplings</p>
+              <a href="#desc-buuz" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-buuz">View details</a>
+              <p class="menu-card__desc" id="desc-buuz" hidden>Hand-pleated steamed dumplings filled with seasoned beef and mutton. Traditionally eaten for Tsagaan Sar (Lunar New Year).</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩10,000</strong>
+                <button type="button" class="menu-add js-add" data-id="buuz" aria-label="Add Buuz Dumplings (6 pcs) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-tsuivan"
+                   data-id="tsuivan" data-name="Tsuivan" data-cuisine="mongolian"
+                   data-price="12000" data-rating="4.6" data-drink="false" data-order="2">
+            <figure class="menu-card__media" data-icon="soup_kitchen">
+              <img src="images/tsuivan.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tsuivan.jpg?width=640"
+                   alt="Tsuivan – stir-fried noodles with beef" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--new">New</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Mongolian · <span lang="ko">초이왕</span></p>
+              <h3 class="menu-card__name">Tsuivan</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 74 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(74)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Stir-fried noodles with beef</p>
+              <a href="#desc-tsuivan" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-tsuivan">View details</a>
+              <p class="menu-card__desc" id="desc-tsuivan" hidden>Hand-cut steamed noodles stir-fried with beef, carrot, cabbage and onion. Hearty, savoury and filling.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩12,000</strong>
+                <button type="button" class="menu-add js-add" data-id="tsuivan" aria-label="Add Tsuivan to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-bansh"
+                   data-id="bansh" data-name="Bansh Dumplings (10 pcs)" data-cuisine="mongolian"
+                   data-price="9000" data-rating="4.6" data-drink="false" data-order="3">
+            <figure class="menu-card__media" data-icon="soup_kitchen">
+              <img src="images/bansh.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Bansh.jpg?width=640"
+                   alt="Bansh Dumplings (10 pcs) – small boiled mutton dumplings" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Mongolian · <span lang="ko">반시</span></p>
+              <h3 class="menu-card__name">Bansh Dumplings (10 pcs)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 63 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(63)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Small boiled mutton dumplings</p>
+              <a href="#desc-bansh" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-bansh">View details</a>
+              <p class="menu-card__desc" id="desc-bansh" hidden>Bite-sized dumplings filled with minced mutton and onion, boiled and served with a light broth. Smaller and softer than buuz.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩9,000</strong>
+                <button type="button" class="menu-add js-add" data-id="bansh" aria-label="Add Bansh Dumplings (10 pcs) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-guriltai-shul"
+                   data-id="guriltai-shul" data-name="Guriltai Shul" data-cuisine="mongolian"
+                   data-price="11000" data-rating="4.5" data-drink="false" data-order="4">
+            <figure class="menu-card__media" data-icon="soup_kitchen">
+              <img src="images/guriltai-shul.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Mongolian_noodle_soup_with_mutton.JPG?width=640"
+                   alt="Guriltai Shul – mutton noodle soup" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Mongolian · <span lang="ko">구릴타이 슐</span></p>
+              <h3 class="menu-card__name">Guriltai Shul</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.5 out of 5 from 52 reviews"><span class="ms" aria-hidden="true">star</span>4.5</span>
+                <span class="menu-reviews">(52)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Mutton noodle soup</p>
+              <a href="#desc-guriltai-shul" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-guriltai-shul">View details</a>
+              <p class="menu-card__desc" id="desc-guriltai-shul" hidden>Homestyle soup with hand-cut noodles, tender mutton slices, potato and carrot in a clear, hearty broth.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩11,000</strong>
+                <button type="button" class="menu-add js-add" data-id="guriltai-shul" aria-label="Add Guriltai Shul to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-suutei-tsai"
+                   data-id="suutei-tsai" data-name="Suutei Tsai" data-cuisine="mongolian"
+                   data-price="4000" data-rating="4.5" data-drink="true" data-order="5">
+            <figure class="menu-card__media" data-icon="local_cafe">
+              <img src="images/suutei-tsai.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tsai.JPG?width=640"
+                   alt="Suutei Tsai – salted mongolian milk tea" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Mongolian · <span lang="ko">수테차</span></p>
+              <h3 class="menu-card__name">Suutei Tsai</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.5 out of 5 from 41 reviews"><span class="ms" aria-hidden="true">star</span>4.5</span>
+                <span class="menu-reviews">(41)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Salted Mongolian milk tea</p>
+              <a href="#desc-suutei-tsai" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-suutei-tsai">View details</a>
+              <p class="menu-card__desc" id="desc-suutei-tsai" hidden>Traditional hot milk tea brewed with green tea and a pinch of salt. Warm, creamy and mildly savoury.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩4,000</strong>
+                <button type="button" class="menu-add js-add" data-id="suutei-tsai" aria-label="Add Suutei Tsai to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-nasi-lemak"
+                   data-id="nasi-lemak" data-name="Nasi Lemak" data-cuisine="malaysian"
+                   data-price="12900" data-rating="4.9" data-drink="false" data-order="6">
+            <figure class="menu-card__media" data-icon="kebab_dining">
+              <img src="images/nasi-lemak.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Nasi_lemak_basic.jpg?width=640"
+                   alt="Nasi Lemak – coconut rice with sambal" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Malaysian · <span lang="ko">나시르막</span></p>
+              <h3 class="menu-card__name">Nasi Lemak</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.9 out of 5 from 342 reviews"><span class="ms" aria-hidden="true">star</span>4.9</span>
+                <span class="menu-reviews">(342)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Coconut rice with sambal</p>
+              <a href="#desc-nasi-lemak" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-nasi-lemak">View details</a>
+              <p class="menu-card__desc" id="desc-nasi-lemak" hidden>Fragrant coconut-milk rice served with spicy sambal, crispy anchovies, roasted peanuts, cucumber and a boiled egg. Malaysia&#x27;s national dish.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩12,900</strong>
+                <button type="button" class="menu-add js-add" data-id="nasi-lemak" aria-label="Add Nasi Lemak to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-roti-canai"
+                   data-id="roti-canai" data-name="Roti Canai with Curry" data-cuisine="malaysian"
+                   data-price="8500" data-rating="4.7" data-drink="false" data-order="7">
+            <figure class="menu-card__media" data-icon="kebab_dining">
+              <img src="images/roti-canai.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Roti_canai.jpeg?width=640"
+                   alt="Roti Canai with Curry – flaky flatbread &amp; dhal curry" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Malaysian · <span lang="ko">로티 차나이</span></p>
+              <h3 class="menu-card__name">Roti Canai with Curry</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 187 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(187)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Flaky flatbread &amp; dhal curry</p>
+              <a href="#desc-roti-canai" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-roti-canai">View details</a>
+              <p class="menu-card__desc" id="desc-roti-canai" hidden>Buttery, flaky flatbread stretched and folded by hand, served with lentil dhal and chicken curry for dipping.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩8,500</strong>
+                <button type="button" class="menu-add js-add" data-id="roti-canai" aria-label="Add Roti Canai with Curry to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-char-kway-teow"
+                   data-id="char-kway-teow" data-name="Char Kway Teow" data-cuisine="malaysian"
+                   data-price="13500" data-rating="4.8" data-drink="false" data-order="8">
+            <figure class="menu-card__media" data-icon="kebab_dining">
+              <img src="images/char-kway-teow.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Char_Kuey_Teow_Basah.jpg?width=640"
+                   alt="Char Kway Teow – wok-fried flat rice noodles" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Malaysian · <span lang="ko">차퀘티아우</span></p>
+              <h3 class="menu-card__name">Char Kway Teow</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 156 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(156)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Wok-fried flat rice noodles</p>
+              <a href="#desc-char-kway-teow" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-char-kway-teow">View details</a>
+              <p class="menu-card__desc" id="desc-char-kway-teow" hidden>Flat rice noodles wok-fried on high heat with prawns, egg, bean sprouts and chives in dark soy sauce. Smoky &quot;wok hei&quot; flavour.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩13,500</strong>
+                <button type="button" class="menu-add js-add" data-id="char-kway-teow" aria-label="Add Char Kway Teow to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-chicken-satay"
+                   data-id="chicken-satay" data-name="Chicken Satay (6 sticks)" data-cuisine="malaysian"
+                   data-price="12000" data-rating="4.8" data-drink="false" data-order="9">
+            <figure class="menu-card__media" data-icon="kebab_dining">
+              <img src="images/chicken-satay.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/CHICKEN_SATAY.jpg?width=640"
+                   alt="Chicken Satay (6 sticks) – grilled skewers with peanut sauce" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Malaysian · <span lang="ko">사테</span></p>
+              <h3 class="menu-card__name">Chicken Satay (6 sticks)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 211 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(211)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Grilled skewers with peanut sauce</p>
+              <a href="#desc-chicken-satay" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-chicken-satay">View details</a>
+              <p class="menu-card__desc" id="desc-chicken-satay" hidden>Turmeric-marinated chicken skewers grilled over charcoal, served with chunky peanut sauce, cucumber, onion and rice cakes.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩12,000</strong>
+                <button type="button" class="menu-add js-add" data-id="chicken-satay" aria-label="Add Chicken Satay (6 sticks) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-curry-laksa"
+                   data-id="curry-laksa" data-name="Curry Laksa" data-cuisine="malaysian"
+                   data-price="13900" data-rating="4.7" data-drink="false" data-order="10">
+            <figure class="menu-card__media" data-icon="kebab_dining">
+              <img src="images/curry-laksa.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Curry_Laksa.jpg?width=640"
+                   alt="Curry Laksa – spicy coconut curry noodle soup" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Malaysian · <span lang="ko">커리 락사</span></p>
+              <h3 class="menu-card__name">Curry Laksa</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 174 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(174)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Spicy coconut curry noodle soup</p>
+              <a href="#desc-curry-laksa" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-curry-laksa">View details</a>
+              <p class="menu-card__desc" id="desc-curry-laksa" hidden>Egg noodles and rice vermicelli in a rich, spicy coconut curry broth with chicken, tofu puffs, prawns and bean sprouts.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩13,900</strong>
+                <button type="button" class="menu-add js-add" data-id="curry-laksa" aria-label="Add Curry Laksa to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-teh-tarik"
+                   data-id="teh-tarik" data-name="Teh Tarik" data-cuisine="malaysian"
+                   data-price="4500" data-rating="4.6" data-drink="true" data-order="11">
+            <figure class="menu-card__media" data-icon="local_cafe">
+              <img src="images/teh-tarik.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tarik_tea.jpg?width=640"
+                   alt="Teh Tarik – frothy &quot;pulled&quot; milk tea" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Malaysian · <span lang="ko">테타릭</span></p>
+              <h3 class="menu-card__name">Teh Tarik</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 90 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(90)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Frothy &quot;pulled&quot; milk tea</p>
+              <a href="#desc-teh-tarik" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-teh-tarik">View details</a>
+              <p class="menu-card__desc" id="desc-teh-tarik" hidden>Strong black tea and condensed milk poured back and forth between two cups until smooth and foamy.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩4,500</strong>
+                <button type="button" class="menu-add js-add" data-id="teh-tarik" aria-label="Add Teh Tarik to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-pad-thai"
+                   data-id="pad-thai" data-name="Pad Thai with Shrimp" data-cuisine="thai"
+                   data-price="13900" data-rating="4.8" data-drink="false" data-order="12">
+            <figure class="menu-card__media" data-icon="ramen_dining">
+              <img src="images/pad-thai.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Pad_Thai_en_Bangkok%2C_Tailandia_%2823790424338%29.jpg?width=640"
+                   alt="Pad Thai with Shrimp – sweet-tangy stir-fried noodles" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">팟타이</span></p>
+              <h3 class="menu-card__name">Pad Thai with Shrimp</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 411 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(411)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Sweet-tangy stir-fried noodles</p>
+              <a href="#desc-pad-thai" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-pad-thai">View details</a>
+              <p class="menu-card__desc" id="desc-pad-thai" hidden>Rice noodles stir-fried with shrimp, tofu, egg and bean sprouts in tamarind sauce, topped with crushed peanuts and lime.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩13,900</strong>
+                <button type="button" class="menu-add js-add" data-id="pad-thai" aria-label="Add Pad Thai with Shrimp to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-tom-yum"
+                   data-id="tom-yum" data-name="Tom Yum Goong" data-cuisine="thai"
+                   data-price="15900" data-rating="4.7" data-drink="false" data-order="13">
+            <figure class="menu-card__media" data-icon="ramen_dining">
+              <img src="images/tom-yum.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tom_yum_goong-01.jpg?width=640"
+                   alt="Tom Yum Goong – hot &amp; sour prawn soup" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">똠얌꿍</span></p>
+              <h3 class="menu-card__name">Tom Yum Goong</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 233 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(233)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Hot &amp; sour prawn soup</p>
+              <a href="#desc-tom-yum" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-tom-yum">View details</a>
+              <p class="menu-card__desc" id="desc-tom-yum" hidden>Spicy-sour soup with prawns, mushrooms, lemongrass, galangal and kaffir lime leaves. Bold, aromatic and warming.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩15,900</strong>
+                <button type="button" class="menu-add js-add" data-id="tom-yum" aria-label="Add Tom Yum Goong to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-green-curry"
+                   data-id="green-curry" data-name="Green Curry Chicken + Rice" data-cuisine="thai"
+                   data-price="14500" data-rating="4.6" data-drink="false" data-order="14">
+            <figure class="menu-card__media" data-icon="ramen_dining">
+              <img src="images/green-curry.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Thai_green_curry_with_chicken_at_restaurant_Thai_Street_Food_in_Porvoo.jpg?width=640"
+                   alt="Green Curry Chicken + Rice – creamy coconut green curry" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">그린커리</span></p>
+              <h3 class="menu-card__name">Green Curry Chicken + Rice</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 148 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(148)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Creamy coconut green curry</p>
+              <a href="#desc-green-curry" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-green-curry">View details</a>
+              <p class="menu-card__desc" id="desc-green-curry" hidden>Tender chicken simmered in coconut milk with green curry paste, Thai basil and eggplant. Served with jasmine rice.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩14,500</strong>
+                <button type="button" class="menu-add js-add" data-id="green-curry" aria-label="Add Green Curry Chicken + Rice to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-pad-krapow"
+                   data-id="pad-krapow" data-name="Pad Krapow Moo + Fried Egg" data-cuisine="thai"
+                   data-price="12500" data-rating="4.8" data-drink="false" data-order="15">
+            <figure class="menu-card__media" data-icon="ramen_dining">
+              <img src="images/pad-krapow.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Pad_Krapow_Moo_%285329148305%29.jpg?width=640"
+                   alt="Pad Krapow Moo + Fried Egg – holy basil pork on rice" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">팟카파오무</span></p>
+              <h3 class="menu-card__name">Pad Krapow Moo + Fried Egg</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 266 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(266)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Holy basil pork on rice</p>
+              <a href="#desc-pad-krapow" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-pad-krapow">View details</a>
+              <p class="menu-card__desc" id="desc-pad-krapow" hidden>Minced pork stir-fried with holy basil, garlic and chilli, served over jasmine rice with a crispy fried egg on top.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩12,500</strong>
+                <button type="button" class="menu-add js-add" data-id="pad-krapow" aria-label="Add Pad Krapow Moo + Fried Egg to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-mango-sticky-rice"
+                   data-id="mango-sticky-rice" data-name="Mango Sticky Rice" data-cuisine="thai"
+                   data-price="8900" data-rating="4.9" data-drink="false" data-order="16">
+            <figure class="menu-card__media" data-icon="ramen_dining">
+              <img src="images/mango-sticky-rice.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Mango_with_glutinous_rice.jpg?width=640"
+                   alt="Mango Sticky Rice – sweet coconut rice dessert" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--new">New</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">망고 스티키라이스</span></p>
+              <h3 class="menu-card__name">Mango Sticky Rice</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.9 out of 5 from 302 reviews"><span class="ms" aria-hidden="true">star</span>4.9</span>
+                <span class="menu-reviews">(302)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Sweet coconut rice dessert</p>
+              <a href="#desc-mango-sticky-rice" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-mango-sticky-rice">View details</a>
+              <p class="menu-card__desc" id="desc-mango-sticky-rice" hidden>Ripe sweet mango with warm glutinous rice soaked in salted coconut cream, sprinkled with toasted mung beans.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩8,900</strong>
+                <button type="button" class="menu-add js-add" data-id="mango-sticky-rice" aria-label="Add Mango Sticky Rice to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-som-tam"
+                   data-id="som-tam" data-name="Som Tam (Papaya Salad)" data-cuisine="thai"
+                   data-price="9900" data-rating="4.7" data-drink="false" data-order="17">
+            <figure class="menu-card__media" data-icon="ramen_dining">
+              <img src="images/som-tam.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Som_tam_thai.JPG?width=640"
+                   alt="Som Tam (Papaya Salad) – spicy green papaya salad" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">쏨땀</span></p>
+              <h3 class="menu-card__name">Som Tam (Papaya Salad)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 158 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(158)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Spicy green papaya salad</p>
+              <a href="#desc-som-tam" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-som-tam">View details</a>
+              <p class="menu-card__desc" id="desc-som-tam" hidden>Shredded green papaya pounded with chilli, garlic, lime, fish sauce, tomato, long beans and roasted peanuts. Fresh, crunchy and fiery.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩9,900</strong>
+                <button type="button" class="menu-add js-add" data-id="som-tam" aria-label="Add Som Tam (Papaya Salad) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-thai-iced-tea"
+                   data-id="thai-iced-tea" data-name="Thai Iced Tea (Cha Yen)" data-cuisine="thai"
+                   data-price="4900" data-rating="4.8" data-drink="true" data-order="18">
+            <figure class="menu-card__media" data-icon="local_cafe">
+              <img src="images/thai-iced-tea.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Cha_yen.JPG?width=640"
+                   alt="Thai Iced Tea (Cha Yen) – sweet orange milk tea on ice" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Thai · <span lang="ko">타이 아이스티</span></p>
+              <h3 class="menu-card__name">Thai Iced Tea (Cha Yen)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 205 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(205)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Sweet orange milk tea on ice</p>
+              <a href="#desc-thai-iced-tea" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-thai-iced-tea">View details</a>
+              <p class="menu-card__desc" id="desc-thai-iced-tea" hidden>Spiced black tea mixed with sweetened condensed milk and poured over ice. The classic Bangkok street drink.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩4,900</strong>
+                <button type="button" class="menu-add js-add" data-id="thai-iced-tea" aria-label="Add Thai Iced Tea (Cha Yen) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-bibimbap"
+                   data-id="bibimbap" data-name="Dolsot Bibimbap" data-cuisine="korean"
+                   data-price="11000" data-rating="4.8" data-drink="false" data-order="19">
+            <figure class="menu-card__media" data-icon="rice_bowl">
+              <img src="images/bibimbap.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Dolsot-bibimbap.jpg?width=640"
+                   alt="Dolsot Bibimbap – sizzling stone-pot rice bowl" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">돌솥비빔밥</span></p>
+              <h3 class="menu-card__name">Dolsot Bibimbap</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 520 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(520)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Sizzling stone-pot rice bowl</p>
+              <a href="#desc-bibimbap" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-bibimbap">View details</a>
+              <p class="menu-card__desc" id="desc-bibimbap" hidden>Rice topped with seasoned vegetables, beef and a fried egg in a hot stone bowl. Mix with gochujang for a crispy, spicy bite.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩11,000</strong>
+                <button type="button" class="menu-add js-add" data-id="bibimbap" aria-label="Add Dolsot Bibimbap to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-tteokbokki"
+                   data-id="tteokbokki" data-name="Tteokbokki" data-cuisine="korean"
+                   data-price="8000" data-rating="4.7" data-drink="false" data-order="20">
+            <figure class="menu-card__media" data-icon="rice_bowl">
+              <img src="images/tteokbokki.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tteokbokki_Dukki_Berlin.jpg?width=640"
+                   alt="Tteokbokki – spicy rice cakes" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">떡볶이</span></p>
+              <h3 class="menu-card__name">Tteokbokki</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 689 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(689)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Spicy rice cakes</p>
+              <a href="#desc-tteokbokki" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-tteokbokki">View details</a>
+              <p class="menu-card__desc" id="desc-tteokbokki" hidden>Chewy rice cakes and fish cakes simmered in sweet-spicy gochujang sauce with spring onions and a boiled egg.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩8,000</strong>
+                <button type="button" class="menu-add js-add" data-id="tteokbokki" aria-label="Add Tteokbokki to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-yangnyeom-chicken"
+                   data-id="yangnyeom-chicken" data-name="Yangnyeom Chicken (Whole)" data-cuisine="korean"
+                   data-price="23000" data-rating="4.9" data-drink="false" data-order="21">
+            <figure class="menu-card__media" data-icon="rice_bowl">
+              <img src="images/yangnyeom-chicken.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Korean_Yangnyeom_chicken.jpg?width=640"
+                   alt="Yangnyeom Chicken (Whole) – sweet &amp; spicy fried chicken" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">양념치킨</span></p>
+              <h3 class="menu-card__name">Yangnyeom Chicken (Whole)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.9 out of 5 from 1204 reviews"><span class="ms" aria-hidden="true">star</span>4.9</span>
+                <span class="menu-reviews">(1,204)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Sweet &amp; spicy fried chicken</p>
+              <a href="#desc-yangnyeom-chicken" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-yangnyeom-chicken">View details</a>
+              <p class="menu-card__desc" id="desc-yangnyeom-chicken" hidden>Double-fried crispy chicken glazed in sweet, spicy and garlicky yangnyeom sauce. Comes with pickled radish.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩23,000</strong>
+                <button type="button" class="menu-add js-add" data-id="yangnyeom-chicken" aria-label="Add Yangnyeom Chicken (Whole) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-kimchi-jjigae"
+                   data-id="kimchi-jjigae" data-name="Kimchi Jjigae + Rice" data-cuisine="korean"
+                   data-price="9500" data-rating="4.6" data-drink="false" data-order="22">
+            <figure class="menu-card__media" data-icon="rice_bowl">
+              <img src="images/kimchi-jjigae.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Korean_stew-Kimchi_jjigae-01.jpg?width=640"
+                   alt="Kimchi Jjigae + Rice – kimchi stew with pork &amp; tofu" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">김치찌개</span></p>
+              <h3 class="menu-card__name">Kimchi Jjigae + Rice</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 377 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(377)</span>
+                <span class="menu-chip-spicy"><span class="ms" aria-hidden="true">local_fire_department</span>Spicy</span>
+              </p>
+              <p class="menu-card__tagline">Kimchi stew with pork &amp; tofu</p>
+              <a href="#desc-kimchi-jjigae" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-kimchi-jjigae">View details</a>
+              <p class="menu-card__desc" id="desc-kimchi-jjigae" hidden>Well-fermented kimchi stew with pork belly, tofu and green onion. Served bubbling hot with a bowl of rice.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩9,500</strong>
+                <button type="button" class="menu-add js-add" data-id="kimchi-jjigae" aria-label="Add Kimchi Jjigae + Rice to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-bulgogi"
+                   data-id="bulgogi" data-name="Bulgogi Rice Set" data-cuisine="korean"
+                   data-price="13000" data-rating="4.8" data-drink="false" data-order="23">
+            <figure class="menu-card__media" data-icon="rice_bowl">
+              <img src="images/bulgogi.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Korean.cuisine-Bulgogi-01.jpg?width=640"
+                   alt="Bulgogi Rice Set – sweet soy-marinated beef" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">불고기 정식</span></p>
+              <h3 class="menu-card__name">Bulgogi Rice Set</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 455 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(455)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Sweet soy-marinated beef</p>
+              <a href="#desc-bulgogi" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-bulgogi">View details</a>
+              <p class="menu-card__desc" id="desc-bulgogi" hidden>Thinly sliced beef marinated in soy sauce, pear and sesame, grilled with onion and served with rice and three side dishes.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩13,000</strong>
+                <button type="button" class="menu-add js-add" data-id="bulgogi" aria-label="Add Bulgogi Rice Set to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-japchae"
+                   data-id="japchae" data-name="Japchae" data-cuisine="korean"
+                   data-price="10500" data-rating="4.7" data-drink="false" data-order="24">
+            <figure class="menu-card__media" data-icon="rice_bowl">
+              <img src="images/japchae.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Japchae_2.jpg?width=640"
+                   alt="Japchae – stir-fried glass noodles" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">잡채</span></p>
+              <h3 class="menu-card__name">Japchae</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 233 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(233)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Stir-fried glass noodles</p>
+              <a href="#desc-japchae" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-japchae">View details</a>
+              <p class="menu-card__desc" id="desc-japchae" hidden>Sweet potato glass noodles stir-fried with beef, spinach, carrot, mushrooms and onion in a sesame-soy glaze.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩10,500</strong>
+                <button type="button" class="menu-add js-add" data-id="japchae" aria-label="Add Japchae to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-sikhye"
+                   data-id="sikhye" data-name="Sikhye" data-cuisine="korean"
+                   data-price="3500" data-rating="4.6" data-drink="true" data-order="25">
+            <figure class="menu-card__media" data-icon="local_cafe">
+              <img src="images/sikhye.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Korean_rice_punch-Sikhye-01.jpg?width=640"
+                   alt="Sikhye – sweet rice punch" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Korean · <span lang="ko">식혜</span></p>
+              <h3 class="menu-card__name">Sikhye</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 118 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(118)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Sweet rice punch</p>
+              <a href="#desc-sikhye" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-sikhye">View details</a>
+              <p class="menu-card__desc" id="desc-sikhye" hidden>Traditional chilled Korean drink made from malt and rice, lightly sweet with soft rice grains floating on top.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩3,500</strong>
+                <button type="button" class="menu-add js-add" data-id="sikhye" aria-label="Add Sikhye to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-tonkotsu-ramen"
+                   data-id="tonkotsu-ramen" data-name="Tonkotsu Ramen" data-cuisine="japanese"
+                   data-price="11500" data-rating="4.8" data-drink="false" data-order="26">
+            <figure class="menu-card__media" data-icon="set_meal">
+              <img src="images/tonkotsu-ramen.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tonkotsu_ramen_in_Tokyo.jpg?width=640"
+                   alt="Tonkotsu Ramen – rich pork-bone broth ramen" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--best">Best</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">돈코츠 라멘</span></p>
+              <h3 class="menu-card__name">Tonkotsu Ramen</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 298 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(298)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Rich pork-bone broth ramen</p>
+              <a href="#desc-tonkotsu-ramen" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-tonkotsu-ramen">View details</a>
+              <p class="menu-card__desc" id="desc-tonkotsu-ramen" hidden>Thin noodles in a creamy pork-bone broth simmered for hours, topped with chashu pork, soft egg, green onion and nori.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩11,500</strong>
+                <button type="button" class="menu-add js-add" data-id="tonkotsu-ramen" aria-label="Add Tonkotsu Ramen to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-nigiri-sushi"
+                   data-id="nigiri-sushi" data-name="Nigiri Sushi Set (10 pcs)" data-cuisine="japanese"
+                   data-price="18900" data-rating="4.7" data-drink="false" data-order="27">
+            <figure class="menu-card__media" data-icon="set_meal">
+              <img src="images/nigiri-sushi.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Nigiri_Sushi_%2826478725732%29.jpg?width=640"
+                   alt="Nigiri Sushi Set (10 pcs) – chef&#x27;s choice nigiri" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">모둠 초밥</span></p>
+              <h3 class="menu-card__name">Nigiri Sushi Set (10 pcs)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 263 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(263)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Chef&#x27;s choice nigiri</p>
+              <a href="#desc-nigiri-sushi" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-nigiri-sushi">View details</a>
+              <p class="menu-card__desc" id="desc-nigiri-sushi" hidden>Ten pieces of hand-pressed nigiri including salmon, tuna, shrimp and white fish. Served with wasabi, ginger and soy sauce.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩18,900</strong>
+                <button type="button" class="menu-add js-add" data-id="nigiri-sushi" aria-label="Add Nigiri Sushi Set (10 pcs) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-katsudon"
+                   data-id="katsudon" data-name="Katsudon" data-cuisine="japanese"
+                   data-price="11900" data-rating="4.6" data-drink="false" data-order="28">
+            <figure class="menu-card__media" data-icon="set_meal">
+              <img src="images/katsudon.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Katsudon_of_Fuji-soba.jpg?width=640"
+                   alt="Katsudon – pork cutlet &amp; egg rice bowl" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--new">New</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">가츠동</span></p>
+              <h3 class="menu-card__name">Katsudon</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 181 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(181)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Pork cutlet &amp; egg rice bowl</p>
+              <a href="#desc-katsudon" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-katsudon">View details</a>
+              <p class="menu-card__desc" id="desc-katsudon" hidden>Crispy pork cutlet simmered with onion and soft egg in a sweet dashi-soy sauce, served over steamed rice.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩11,900</strong>
+                <button type="button" class="menu-add js-add" data-id="katsudon" aria-label="Add Katsudon to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-takoyaki"
+                   data-id="takoyaki" data-name="Takoyaki (8 pcs)" data-cuisine="japanese"
+                   data-price="7500" data-rating="4.7" data-drink="false" data-order="29">
+            <figure class="menu-card__media" data-icon="set_meal">
+              <img src="images/takoyaki.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Takoyaki_in_Osaka.jpg?width=640"
+                   alt="Takoyaki (8 pcs) – octopus balls from osaka" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">타코야키</span></p>
+              <h3 class="menu-card__name">Takoyaki (8 pcs)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 240 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(240)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Octopus balls from Osaka</p>
+              <a href="#desc-takoyaki" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-takoyaki">View details</a>
+              <p class="menu-card__desc" id="desc-takoyaki" hidden>Crispy-outside, creamy-inside batter balls with octopus, topped with takoyaki sauce, mayo, aonori and bonito flakes.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩7,500</strong>
+                <button type="button" class="menu-add js-add" data-id="takoyaki" aria-label="Add Takoyaki (8 pcs) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-gyoza"
+                   data-id="gyoza" data-name="Pan-fried Gyoza (6 pcs)" data-cuisine="japanese"
+                   data-price="6900" data-rating="4.6" data-drink="false" data-order="30">
+            <figure class="menu-card__media" data-icon="set_meal">
+              <img src="images/gyoza.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Japanese_pan_fried_gyoza.jpg?width=640"
+                   alt="Pan-fried Gyoza (6 pcs) – crispy pork dumplings" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">교자</span></p>
+              <h3 class="menu-card__name">Pan-fried Gyoza (6 pcs)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 187 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(187)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Crispy pork dumplings</p>
+              <a href="#desc-gyoza" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-gyoza">View details</a>
+              <p class="menu-card__desc" id="desc-gyoza" hidden>Thin-skinned dumplings filled with pork and cabbage, pan-fried until golden on the bottom. Served with soy-vinegar dip.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩6,900</strong>
+                <button type="button" class="menu-add js-add" data-id="gyoza" aria-label="Add Pan-fried Gyoza (6 pcs) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-tempura"
+                   data-id="tempura" data-name="Tempura Set" data-cuisine="japanese"
+                   data-price="14500" data-rating="4.6" data-drink="false" data-order="31">
+            <figure class="menu-card__media" data-icon="set_meal">
+              <img src="images/tempura.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Tempura_003.jpg?width=640"
+                   alt="Tempura Set – crispy shrimp &amp; vegetable tempura" width="640" height="480" loading="lazy">
+              <span class="menu-badge menu-badge--new">New</span>
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">튀김 정식</span></p>
+              <h3 class="menu-card__name">Tempura Set</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 142 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(142)</span>
+                
+              </p>
+              <p class="menu-card__tagline">Crispy shrimp &amp; vegetable tempura</p>
+              <a href="#desc-tempura" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-tempura">View details</a>
+              <p class="menu-card__desc" id="desc-tempura" hidden>Light, crispy battered shrimp and seasonal vegetables served with tentsuyu dipping sauce, rice and miso soup.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩14,500</strong>
+                <button type="button" class="menu-add js-add" data-id="tempura" aria-label="Add Tempura Set to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-matcha-latte"
+                   data-id="matcha-latte" data-name="Iced Matcha Latte" data-cuisine="japanese"
+                   data-price="5500" data-rating="4.7" data-drink="true" data-order="32">
+            <figure class="menu-card__media" data-icon="local_cafe">
+              <img src="images/matcha-latte.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Matcha_latte.jpg?width=640"
+                   alt="Iced Matcha Latte – uji matcha with milk" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Japanese · <span lang="ko">말차 라떼</span></p>
+              <h3 class="menu-card__name">Iced Matcha Latte</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 154 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(154)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Uji matcha with milk</p>
+              <a href="#desc-matcha-latte" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-matcha-latte">View details</a>
+              <p class="menu-card__desc" id="desc-matcha-latte" hidden>Premium Japanese matcha whisked and layered with fresh milk. Earthy, smooth and lightly sweet.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩5,500</strong>
+                <button type="button" class="menu-add js-add" data-id="matcha-latte" aria-label="Add Iced Matcha Latte to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-water"
+                   data-id="water" data-name="Mineral Water (500ml)" data-cuisine="softdrink"
+                   data-price="1500" data-rating="4.8" data-drink="true" data-order="33">
+            <figure class="menu-card__media" data-icon="local_drink">
+              <img src="images/water.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Glass-of-water.jpg?width=640"
+                   alt="Mineral Water (500ml) – still bottled water" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Soft drink · <span lang="ko">생수</span></p>
+              <h3 class="menu-card__name">Mineral Water (500ml)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 96 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(96)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Still bottled water</p>
+              <a href="#desc-water" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-water">View details</a>
+              <p class="menu-card__desc" id="desc-water" hidden>Cold still mineral water in a 500ml bottle.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩1,500</strong>
+                <button type="button" class="menu-add js-add" data-id="water" aria-label="Add Mineral Water (500ml) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-sparkling-water"
+                   data-id="sparkling-water" data-name="Sparkling Water (500ml)" data-cuisine="softdrink"
+                   data-price="2500" data-rating="4.6" data-drink="true" data-order="34">
+            <figure class="menu-card__media" data-icon="local_drink">
+              <img src="images/sparkling-water.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Sparkling_Water_%284675945072%29.jpg?width=640"
+                   alt="Sparkling Water (500ml) – fizzy &amp; refreshing" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Soft drink · <span lang="ko">탄산수</span></p>
+              <h3 class="menu-card__name">Sparkling Water (500ml)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.6 out of 5 from 71 reviews"><span class="ms" aria-hidden="true">star</span>4.6</span>
+                <span class="menu-reviews">(71)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Fizzy &amp; refreshing</p>
+              <a href="#desc-sparkling-water" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-sparkling-water">View details</a>
+              <p class="menu-card__desc" id="desc-sparkling-water" hidden>Chilled unflavoured sparkling water. Great with spicy food.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩2,500</strong>
+                <button type="button" class="menu-add js-add" data-id="sparkling-water" aria-label="Add Sparkling Water (500ml) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-cola"
+                   data-id="cola" data-name="Cola (355ml)" data-cuisine="softdrink"
+                   data-price="2500" data-rating="4.8" data-drink="true" data-order="35">
+            <figure class="menu-card__media" data-icon="local_drink">
+              <img src="images/cola.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Cola.jpg?width=640"
+                   alt="Cola (355ml) – classic cola on ice" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Soft drink · <span lang="ko">콜라</span></p>
+              <h3 class="menu-card__name">Cola (355ml)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.8 out of 5 from 312 reviews"><span class="ms" aria-hidden="true">star</span>4.8</span>
+                <span class="menu-reviews">(312)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Classic cola on ice</p>
+              <a href="#desc-cola" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-cola">View details</a>
+              <p class="menu-card__desc" id="desc-cola" hidden>Ice-cold classic cola served in a can with a cup of ice.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩2,500</strong>
+                <button type="button" class="menu-add js-add" data-id="cola" aria-label="Add Cola (355ml) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-lemon-lime-soda"
+                   data-id="lemon-lime-soda" data-name="Lemon-Lime Soda (355ml)" data-cuisine="softdrink"
+                   data-price="2500" data-rating="4.7" data-drink="true" data-order="36">
+            <figure class="menu-card__media" data-icon="local_drink">
+              <img src="images/lemon-lime-soda.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Lemon_lime_soda.jpg?width=640"
+                   alt="Lemon-Lime Soda (355ml) – clear lemon-lime fizz" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Soft drink · <span lang="ko">사이다</span></p>
+              <h3 class="menu-card__name">Lemon-Lime Soda (355ml)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.7 out of 5 from 205 reviews"><span class="ms" aria-hidden="true">star</span>4.7</span>
+                <span class="menu-reviews">(205)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Clear lemon-lime fizz</p>
+              <a href="#desc-lemon-lime-soda" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-lemon-lime-soda">View details</a>
+              <p class="menu-card__desc" id="desc-lemon-lime-soda" hidden>Crisp lemon-lime soda (Korean &quot;cider&quot;), served ice cold.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩2,500</strong>
+                <button type="button" class="menu-add js-add" data-id="lemon-lime-soda" aria-label="Add Lemon-Lime Soda (355ml) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+          <article class="menu-card" id="item-orange-soda"
+                   data-id="orange-soda" data-name="Orange Soda (355ml)" data-cuisine="softdrink"
+                   data-price="2500" data-rating="4.5" data-drink="true" data-order="37">
+            <figure class="menu-card__media" data-icon="local_drink">
+              <img src="images/orange-soda.jpg" data-remote="https://commons.wikimedia.org/wiki/Special:FilePath/Orangeade.jpg?width=640"
+                   alt="Orange Soda (355ml) – sweet orange fizz" width="640" height="480" loading="lazy">
+              
+            </figure>
+            <div class="menu-card__body">
+              <p class="menu-card__cuisine">Soft drink · <span lang="ko">오렌지 소다</span></p>
+              <h3 class="menu-card__name">Orange Soda (355ml)</h3>
+              <p class="menu-card__meta">
+                <span class="menu-rating" aria-label="Rated 4.5 out of 5 from 118 reviews"><span class="ms" aria-hidden="true">star</span>4.5</span>
+                <span class="menu-reviews">(118)</span>
+                <span class="menu-chip-drink">Drink</span>
+              </p>
+              <p class="menu-card__tagline">Sweet orange fizz</p>
+              <a href="#desc-orange-soda" class="menu-link js-toggle-desc" aria-expanded="false" aria-controls="desc-orange-soda">View details</a>
+              <p class="menu-card__desc" id="desc-orange-soda" hidden>Bright, bubbly orange-flavoured soda, served ice cold.</p>
+              <div class="menu-card__footer">
+                <strong class="menu-card__price">₩2,500</strong>
+                <button type="button" class="menu-add js-add" data-id="orange-soda" aria-label="Add Orange Soda (355ml) to cart"><span class="ms" aria-hidden="true">add</span><span class="menu-add__label">Add</span></button>
+              </div>
+            </div>
+          </article>
+      </div>
+
+      <p class="menu-empty" id="menu-empty" hidden><span class="ms" aria-hidden="true">search_off</span>No dishes match your search. Try another word or category.</p>
+    </section>
+
+    <!-- Floating cart bar (shows when cart has items) -->
+    <a href="#cart" class="menu-cartbar" id="menu-cartbar" hidden>
+      <span class="ms" aria-hidden="true">shopping_bag</span><span class="menu-cartbar__count" id="cartbar-count">0</span>
+      <span class="menu-cartbar__label">View cart</span>
+      <span class="menu-cartbar__total" id="cartbar-total">₩0</span>
+    </a>
+
+    <!-- Cart drawer -->
+    <div class="menu-overlay" id="menu-overlay" hidden></div>
+    <aside class="menu-cart" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+      <header class="menu-cart__head">
+        <h2 id="cart-title">Your cart</h2>
+        <button type="button" class="menu-cart__close" id="cart-close" aria-label="Close cart"><span class="ms" aria-hidden="true">close</span></button>
+      </header>
+
+      <ul class="menu-cart__list" id="cart-list"></ul>
+      <p class="menu-cart__empty" id="cart-empty"><span class="ms" aria-hidden="true">shopping_bag</span>Your cart is empty. Add something tasty.</p>
+
+      <footer class="menu-cart__foot">
+        <dl class="menu-cart__sum">
+          <div><dt>Subtotal</dt><dd id="cart-subtotal">₩0</dd></div>
+          <div><dt>Delivery fee</dt><dd id="cart-delivery">₩0</dd></div>
+          <div class="menu-cart__total"><dt>Total</dt><dd id="cart-total">₩0</dd></div>
+        </dl>
+        <p class="menu-cart__note" id="cart-note"></p>
+        <button type="button" class="menu-checkout" id="cart-checkout" disabled>Place order</button>
+      </footer>
+    </aside>
+
+    <!-- Small toast message -->
+    <div class="menu-toast" id="menu-toast" role="status" aria-live="polite"></div>
+    <!-- ===== MENU SECTION END ===== -->
+
+    <!-- PLACEHOLDER: teammate's Contact section goes here -->
+    <section id="contact" class="placeholder-section">
+      <h2>Contact</h2>
+      <p>(Contact form section – teammate's part)</p>
+    </section>
+  </main>
+
+  <!-- PLACEHOLDER footer (teammate adds the live date & time here) -->
+  <footer class="site-footer">
+    <p>© 2026 Online Food Ordering · Web Programming Group Project</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
