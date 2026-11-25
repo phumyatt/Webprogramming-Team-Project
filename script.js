@@ -67,13 +67,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showAuth() {
-    authPanel.hidden = false;
-    dashboard.hidden = true;
+  authPanel.hidden = false;
+  dashboard.hidden = true;
 
-    document.getElementById("accountNav").textContent = "Account";
+  loginForm.reset();
+  registerForm.reset();
 
-    showLogin();
-  }
+  loginMessage.textContent = "";
+  registerMessage.textContent = "";
+
+  document.getElementById("accountNav").textContent = "Account";
+
+  showLogin();
+}
 
   loginTab.addEventListener("click", showLogin);
   registerTab.addEventListener("click", showRegister);
@@ -188,3 +194,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const contactSuccess = document.getElementById("contactSuccess");
+
+    contactSuccess.hidden = false;
+    contactForm.reset();
+  });
+}
