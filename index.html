@@ -3,57 +3,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>Online Food Ordering | Authentic Thai Food</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThaiTaste | Authentic Thai Food</title>
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
 
-  <!-- HEADER -->
   <header class="header">
-    <a href="#home" class="logo">
-      Thai<span>Taste</span>
-    </a>
+    <a href="#home" class="logo">Thai<span>Taste</span></a>
 
     <nav class="navbar">
       <a href="#home" class="active">Home</a>
       <a href="#menu">Menu</a>
       <a href="#contact">Contact</a>
+      <a href="#account" id="accountNav">Account</a>
     </nav>
   </header>
 
   <main>
-
-    <!-- HOME SECTION: MEMBER 1 -->
     <section id="home" class="home">
       <div class="home-content">
-        <h1>
-          Authentic<br>
-          <span>Thai Food</span>
-        </h1>
-
+        <h1>Authentic<br><span>Thai Food</span></h1>
         <p>
           Experience the authentic taste of Thailand.
           Fresh ingredients, traditional recipes,
           and unforgettable flavors.
         </p>
-
-        <a href="#menu" class="order-btn">
-          Order Now
-        </a>
+        <a href="#menu" class="order-btn">Order Now</a>
       </div>
     </section>
 
-    <!-- MENU SECTION: MEMBER 2 -->
+    <section id="account" class="account-section">
+      <div class="account-container">
 
-    <!-- ORDER FEATURES: MEMBER 3 -->
+        <div id="authPanel">
+          <h2>Welcome to <span>ThaiTaste</span></h2>
+          <p class="account-description">
+            Sign in or create an account to get started.
+          </p>
 
-    <!-- CONTACT SECTION: MEMBER 4 -->
+          <div class="auth-tabs">
+            <button type="button" id="loginTab" class="tab active">
+              Login
+            </button>
+            <button type="button" id="registerTab" class="tab">
+              Register
+            </button>
+          </div>
 
+          <form id="loginForm">
+            <h3>Login to Your Account</h3>
+
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" required>
+
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
+
+            <p id="loginMessage" class="message" aria-live="polite"></p>
+
+            <button type="submit" class="account-btn">
+              Login
+            </button>
+          </form>
+
+          <form id="registerForm" hidden>
+            <h3>Create an Account</h3>
+
+            <label for="registerName">Full Name</label>
+            <input type="text" id="registerName" required>
+
+            <label for="registerEmail">Email Address</label>
+            <input type="email" id="registerEmail" required>
+
+            <label for="registerPassword">Password</label>
+            <input type="password" id="registerPassword"
+                   minlength="8" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword"
+                   minlength="8" required>
+
+            <p id="registerMessage" class="message"
+               aria-live="polite"></p>
+
+            <button type="submit" class="account-btn">
+              Create Account
+            </button>
+          </form>
+        </div>
+
+        <div id="dashboard" hidden>
+          <h2>My <span>Account</span></h2>
+          <p class="account-description">
+            Welcome to your ThaiTaste account.
+          </p>
+
+          <div class="profile-card">
+            <div class="profile-avatar">TT</div>
+            <h3 id="profileName"></h3>
+            <p id="profileEmail"></p>
+          </div>
+
+          <p id="dashboardMessage" class="message"
+             aria-live="polite"></p>
+
+          <button type="button" id="logoutButton"
+                  class="account-btn logout-btn">
+            Logout
+          </button>
+        </div>
+
+      </div>
+    </section>
   </main>
 
 </body>
