@@ -1,60 +1,855 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Online Food Ordering | Authentic Thai Food</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>Team Two | Online Food Ordering</title>
+
+  <link rel="stylesheet" href="styles.css?v=8">
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="script.js?v=8" defer></script>
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER - MEMBER 1 -->
+
   <header class="header">
+
     <a href="#home" class="logo">
-      Thai<span>Taste</span>
+      <span class="logo-icon">
+        <i data-lucide="chef-hat"></i>
+      </span>
+      <span class="brand-name">Team <b>Two</b></span>
     </a>
 
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
+
       <a href="#home" class="active">Home</a>
-      <a href="#menu">Menu</a>
+
+      <a href="#cart">
+        <i data-lucide="shopping-cart"></i>
+        Cart
+        <span class="cart-count" id="cart-count">0</span>
+      </a>
+
+      <a href="#order">
+        <i data-lucide="clipboard-list"></i>
+        Order
+      </a>
+
+      <a href="#account">
+        <i data-lucide="user-round"></i>
+        My Account
+      </a>
+
       <a href="#contact">Contact</a>
+      <a href="#notifications" aria-label="Notifications">
+        <i data-lucide="bell"></i>
+      </a>
+
     </nav>
+
   </header>
 
   <main>
 
-    <!-- HOME SECTION: MEMBER 1 -->
+    <!-- HOME SECTION - MEMBER 1 -->
+
     <section id="home" class="home">
-      <div class="home-content">
-        <h1>
-          Authentic<br>
-          <span>Thai Food</span>
-        </h1>
+
+      <div class="home-hero">
+
+        <div class="home-content">
+
+          <h1>
+            Order Your<br>
+            Favorite <span>Thai Food</span><br>
+            <span class="online-text">Online</span>
+          </h1>
+
+          <p>
+            Authentic Thai flavors, freshly prepared<br>
+            and delivered to your door.
+          </p>
+
+          <div class="home-buttons">
+
+            <a href="#menu" class="order-btn">
+              <i data-lucide="shopping-cart"></i>
+              Order Now
+            </a>
+
+            <a href="#menu" class="view-menu-btn">
+              <i data-lucide="list"></i>
+              View Menu
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="home-image">
+          <img src="images/hero-pad-thai.png"
+               alt="Authentic Shrimp Pad Thai">
+        </div>
+
+      </div>
+
+      <div class="home-features">
+
+        <article class="home-feature">
+          <i data-lucide="truck"></i>
+          <div>
+            <h3>Fast Delivery</h3>
+            <p>Quick and easy ordering</p>
+          </div>
+        </article>
+
+        <article class="home-feature">
+          <i data-lucide="leaf"></i>
+          <div>
+            <h3>Fresh Ingredients</h3>
+            <p>High-quality &amp; safe</p>
+          </div>
+        </article>
+
+        <article class="home-feature">
+          <i data-lucide="chef-hat"></i>
+          <div>
+            <h3>Authentic Recipes</h3>
+            <p>Traditional Thai taste</p>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- MENU SECTION - MEMBER 2 -->
+
+    <section id="menu" class="menu" hidden>
+
+      <div class="menu-heading">
+
+        <a href="#home" class="back-home">
+          <i data-lucide="arrow-left"></i>
+          Back to Home
+        </a>
+
+        <p class="menu-label">DISCOVER OUR FLAVORS</p>
+
+        <h2>Explore Our <span>Menu</span></h2>
 
         <p>
-          Experience the authentic taste of Thailand.
-          Fresh ingredients, traditional recipes,
-          and unforgettable flavors.
+          Fresh ingredients. Authentic recipes.
+          Unforgettable Thai flavors.
         </p>
 
-        <a href="#menu" class="order-btn">
-          Order Now
+      </div>
+
+      <div class="menu-toolbar">
+
+        <div class="menu-filters">
+
+          <button class="filter-btn active"
+                  data-category="all" type="button">
+            All
+          </button>
+
+          <button class="filter-btn"
+                  data-category="main" type="button">
+            Main Dishes
+          </button>
+
+          <button class="filter-btn"
+                  data-category="soup" type="button">
+            Soup
+          </button>
+
+          <button class="filter-btn"
+                  data-category="salad" type="button">
+            Salad
+          </button>
+
+          <button class="filter-btn"
+                  data-category="dessert" type="button">
+            Dessert
+          </button>
+
+        </div>
+
+        <div class="menu-search">
+          <i data-lucide="search"></i>
+          <input type="search"
+                 id="food-search"
+                 placeholder="Search food..."
+                 aria-label="Search food">
+        </div>
+
+      </div>
+
+      <div class="menu-container">
+
+        <!-- FOOD 1 -->
+
+        <article class="menu-card"
+                 data-category="main"
+                 data-name="Pad Thai">
+
+          <img src="images/pad-thai.jpg" alt="Pad Thai">
+
+          <div class="menu-info">
+
+            <span class="food-category">MAIN DISH</span>
+            <h3>Pad Thai</h3>
+            <p class="price">₩12,000</p>
+
+            <button class="details-btn" type="button">
+              View Details
+            </button>
+
+            <p class="food-description" hidden>
+              Traditional Thai stir-fried noodles with shrimp,
+              egg, bean sprouts, peanuts, and a sweet and sour sauce.
+            </p>
+
+            <button class="add-cart-btn"
+                    data-id="1"
+                    data-name="Pad Thai"
+                    data-price="12000"
+                    data-image="images/pad-thai.jpg"
+                    type="button">
+              <i data-lucide="shopping-cart"></i>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- FOOD 2 -->
+
+        <article class="menu-card"
+                 data-category="soup"
+                 data-name="Tom Yum Soup">
+
+          <img src="images/tom-yum.jpg" alt="Tom Yum Soup">
+
+          <div class="menu-info">
+
+            <span class="food-category">SOUP</span>
+            <h3>Tom Yum Soup</h3>
+            <p class="price">₩14,000</p>
+
+            <button class="details-btn" type="button">
+              View Details
+            </button>
+
+            <p class="food-description" hidden>
+              A famous Thai spicy and sour soup with shrimp,
+              mushrooms, lemongrass, lime, and aromatic herbs.
+            </p>
+
+            <button class="add-cart-btn"
+                    data-id="2"
+                    data-name="Tom Yum Soup"
+                    data-price="14000"
+                    data-image="images/tom-yum.jpg"
+                    type="button">
+              <i data-lucide="shopping-cart"></i>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- FOOD 3 -->
+
+        <article class="menu-card"
+                 data-category="main"
+                 data-name="Green Curry">
+
+          <img src="images/green-curry.jpg"
+               alt="Thai Green Curry">
+
+          <div class="menu-info">
+
+            <span class="food-category">MAIN DISH</span>
+            <h3>Green Curry</h3>
+            <p class="price">₩13,000</p>
+
+            <button class="details-btn" type="button">
+              View Details
+            </button>
+
+            <p class="food-description" hidden>
+              Creamy Thai green curry made with coconut milk,
+              vegetables, herbs, and tender chicken.
+            </p>
+
+            <button class="add-cart-btn"
+                    data-id="3"
+                    data-name="Green Curry"
+                    data-price="13000"
+                    data-image="images/green-curry.jpg"
+                    type="button">
+              <i data-lucide="shopping-cart"></i>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- FOOD 4 -->
+
+        <article class="menu-card"
+                 data-category="main"
+                 data-name="Thai Fried Rice">
+
+          <img src="images/thai-fried-rice.jpg"
+               alt="Thai Fried Rice">
+
+          <div class="menu-info">
+
+            <span class="food-category">MAIN DISH</span>
+            <h3>Thai Fried Rice</h3>
+            <p class="price">₩11,000</p>
+
+            <button class="details-btn" type="button">
+              View Details
+            </button>
+
+            <p class="food-description" hidden>
+              Fragrant fried rice cooked with egg, vegetables,
+              and your choice of chicken or shrimp.
+            </p>
+
+            <button class="add-cart-btn"
+                    data-id="4"
+                    data-name="Thai Fried Rice"
+                    data-price="11000"
+                    data-image="images/thai-fried-rice.jpg"
+                    type="button">
+              <i data-lucide="shopping-cart"></i>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- FOOD 5 -->
+
+        <article class="menu-card"
+                 data-category="dessert"
+                 data-name="Mango Sticky Rice">
+
+          <img src="images/mango-sticky-rice.jpg"
+               alt="Mango Sticky Rice">
+
+          <div class="menu-info">
+
+            <span class="food-category">DESSERT</span>
+            <h3>Mango Sticky Rice</h3>
+            <p class="price">₩7,000</p>
+
+            <button class="details-btn" type="button">
+              View Details
+            </button>
+
+            <p class="food-description" hidden>
+              A classic Thai dessert made with sweet sticky rice,
+              fresh mango, and creamy coconut milk.
+            </p>
+
+            <button class="add-cart-btn"
+                    data-id="5"
+                    data-name="Mango Sticky Rice"
+                    data-price="7000"
+                    data-image="images/mango-sticky-rice.jpg"
+                    type="button">
+              <i data-lucide="shopping-cart"></i>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- FOOD 6 -->
+
+        <article class="menu-card"
+                 data-category="salad"
+                 data-name="Som Tum Papaya Salad">
+
+          <img src="images/som-tum.jpg"
+               alt="Thai Green Papaya Salad">
+
+          <div class="menu-info">
+
+            <span class="food-category">SALAD</span>
+            <h3>Som Tum (Papaya Salad)</h3>
+            <p class="price">₩9,000</p>
+
+            <button class="details-btn" type="button">
+              View Details
+            </button>
+
+            <p class="food-description" hidden>
+              A refreshing Thai green papaya salad mixed with
+              lime juice, chili, tomatoes, peanuts, and fish sauce.
+            </p>
+
+            <button class="add-cart-btn"
+                    data-id="6"
+                    data-name="Som Tum"
+                    data-price="9000"
+                    data-image="images/som-tum.jpg"
+                    type="button">
+              <i data-lucide="shopping-cart"></i>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+      <p id="no-results" class="empty-message" hidden>
+        No matching dishes found.
+      </p>
+
+    </section>
+
+
+    <!-- CART SECTION - MEMBER 3 -->
+
+    <section id="cart" class="shop-page" hidden>
+
+      <a href="#menu" class="back-home">
+        <i data-lucide="arrow-left"></i>
+        Continue Shopping
+      </a>
+
+      <div class="page-heading">
+        <h2>Your <span>Cart</span></h2>
+        <p>Review your favorite dishes before ordering.</p>
+      </div>
+
+      <div class="cart-layout">
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <aside class="order-summary">
+
+          <h3>Order Summary</h3>
+
+          <div class="delivery-banner">
+            <i data-lucide="truck"></i>
+            <p id="cart-delivery-message">
+              Free delivery on orders over ₩30,000.
+            </p>
+          </div>
+
+          <div class="delivery-progress">
+            <div id="delivery-progress-bar"></div>
+          </div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">₩0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery</span>
+            <span id="delivery-fee">₩0</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Total</span>
+            <span id="cart-total">₩0</span>
+          </div>
+
+          <button id="checkout-btn"
+                  class="primary-btn"
+                  type="button">
+            Proceed to Checkout
+          </button>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- ORDER SECTION - MEMBER 3 -->
+
+    <section id="order" class="shop-page" hidden>
+
+      <a href="#cart" class="back-home">
+        <i data-lucide="arrow-left"></i>
+        Back to Cart
+      </a>
+
+      <div class="page-heading">
+        <h2>Place Your <span>Order</span></h2>
+        <p>Enter your delivery information.</p>
+      </div>
+
+      <div class="checkout-layout">
+
+        <form id="order-form" class="checkout-form">
+
+          <h3>Delivery Information</h3>
+
+          <!-- ACCOUNT SELECTION -->
+
+          <label for="delivery-source">
+            Delivery Information Source
+          </label>
+
+          <select id="delivery-source" name="delivery-source">
+            <option value="other">Other</option>
+            <option value="account">My Account</option>
+          </select>
+
+          <p id="account-message"
+             class="account-message" hidden>
+          </p>
+
+          <label for="customer-name">Full Name</label>
+          <input id="customer-name"
+                 name="name"
+                 type="text"
+                 autocomplete="name"
+                 required>
+
+          <label for="customer-phone">Phone Number</label>
+          <input id="customer-phone"
+                 name="phone"
+                 type="tel"
+                 autocomplete="tel"
+                 required>
+
+          <label for="customer-email">Email Address</label>
+          <input id="customer-email"
+                 name="email"
+                 type="email"
+                 autocomplete="email"
+                 required>
+
+          <label for="customer-address">Delivery Address</label>
+          <textarea id="customer-address"
+                    name="address"
+                    rows="3"
+                    autocomplete="street-address"
+                    required></textarea>
+
+          <label for="order-note">Special Instructions</label>
+          <textarea id="order-note"
+                    name="note"
+                    rows="3"
+                    placeholder="Optional"></textarea>
+
+          <label for="payment-method">Payment Method</label>
+          <select id="payment-method" required>
+            <option value="cash">Cash on Delivery</option>
+          </select>
+
+          <button class="primary-btn" type="submit">
+            Confirm Demo Order
+          </button>
+
+          <p class="demo-note">
+            This is a student project.
+            No real payment or delivery is processed.
+          </p>
+
+        </form>
+
+        <div class="checkout-sidebar">
+
+          <!-- PREVIOUS ORDERS -->
+
+          <aside class="order-summary previous-orders">
+
+            <div class="history-heading">
+
+              <h3>
+                <i data-lucide="history"></i>
+                Previous Orders
+              </h3>
+
+              <button id="toggle-history"
+                      class="history-toggle"
+                      type="button"
+                      aria-controls="previous-orders-list"
+                      aria-expanded="true">
+                Hide
+              </button>
+
+            </div>
+
+            <div id="previous-orders-list">
+
+              <p class="history-empty">
+                No previous orders yet.
+              </p>
+
+            </div>
+
+          </aside>
+
+          <!-- CURRENT ORDER -->
+
+          <aside class="order-summary">
+
+            <h3>Your Order</h3>
+
+            <div class="delivery-banner">
+              <i data-lucide="truck"></i>
+              <p id="checkout-delivery-message">
+                Free delivery on orders of ₩30,000 or more.
+              </p>
+            </div>
+
+            <div id="checkout-items"></div>
+
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="checkout-total">₩0</span>
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+      <div id="order-success"
+           class="order-success"
+           role="status"
+           hidden>
+
+        <i data-lucide="circle-check"></i>
+
+        <h3>Order Confirmed!</h3>
+
+        <p>Your demo order has been placed successfully.</p>
+
+        <a href="#home" class="primary-btn">
+          Back to Home
         </a>
+
+        <button id="view-previous-orders"
+                class="secondary-btn"
+                type="button">
+          View Previous Orders
+        </button>
+
+      </div>
+
+    </section>
+
+
+        <section id="account" class="account-section" hidden>
+      <div class="account-container">
+
+        <div id="authPanel">
+          <h2>Welcome to <span>Team Two</span></h2>
+          <p class="account-description">
+            Sign in or create an account to get started.
+          </p>
+
+          <div class="auth-tabs">
+            <button type="button" id="loginTab" class="tab active">
+              Login
+            </button>
+            <button type="button" id="registerTab" class="tab">
+              Register
+            </button>
+          </div>
+
+          <form id="loginForm">
+            <h3>Login to Your Account</h3>
+
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" required>
+
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required>
+
+            <p id="loginMessage" class="message" aria-live="polite"></p>
+
+            <button type="submit" class="account-btn">
+              Login
+            </button>
+          </form>
+
+          <form id="registerForm" hidden>
+            <h3>Create an Account</h3>
+
+            <label for="registerName">Full Name</label>
+            <input type="text" id="registerName" required>
+
+            <label for="registerEmail">Email Address</label>
+            <input type="email" id="registerEmail" required>
+
+            <label for="registerPassword">Password</label>
+            <input type="password" id="registerPassword"
+                   minlength="8" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword"
+                   minlength="8" required>
+
+            <p id="registerMessage" class="message"
+               aria-live="polite"></p>
+
+            <button type="submit" class="account-btn">
+              Create Account
+            </button>
+          </form>
+        </div>
+
+        <div id="dashboard" hidden>
+          <h2>My <span>Account</span></h2>
+          <p class="account-description">
+            Welcome to your Team Two account.
+          </p>
+
+          <div class="profile-card">
+            <div class="profile-avatar">TT</div>
+            <h3 id="profileName"></h3>
+            <p id="profileEmail"></p>
+          </div>
+
+          <form id="profileForm">
+<label for="profilePhone">Phone Number</label><input id="profilePhone" type="tel" autocomplete="tel">
+<label for="profileAddress">Delivery Address</label><input id="profileAddress" autocomplete="street-address">
+<button class="account-btn" type="submit">Save Delivery Information</button>
+</form>
+<p id="dashboardMessage" class="message"
+             aria-live="polite"></p>
+
+          <button type="button" id="logoutButton"
+                  class="account-btn logout-btn">
+            Logout
+          </button>
+        </div>
+
       </div>
     </section>
 
-    <!-- MENU SECTION: MEMBER 2 -->
 
-    <!-- ORDER FEATURES: MEMBER 3 -->
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact" hidden>
+  <div class="contact-container">
+    <div class="contact-heading">
+      <h2>Contact <span>Us</span></h2>
+      <p>
+        Have a question or want to know more about our delicious Thai food?
+        We'd love to hear from you!
+      </p>
+    </div>
 
-    <!-- CONTACT SECTION: MEMBER 4 -->
+    <div class="contact-content">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+
+        <div class="contact-item">
+          <h4>Address</h4>
+          <p>25 Sukhumvit Road, Bangkok, Thailand 10110</p>
+        </div>
+
+        <div class="contact-item">
+          <h4>Phone</h4>
+          <p>+66 2 123 4567</p>
+        </div>
+
+        <div class="contact-item">
+          <h4>Email</h4>
+          <p>hello@thaitaste.example</p>
+        </div>
+
+        <div class="contact-item">
+          <h4>Opening Hours</h4>
+          <p>Monday – Sunday</p>
+          <p>10:00 AM – 10:00 PM</p>
+        </div>
+      </div>
+
+      <div class="contact-form-container">
+        <h3>Send Us a Message</h3>
+
+        <form id="contactForm">
+          <label for="contactName">Your Name</label>
+          <input
+            type="text"
+            id="contactName"
+            placeholder="Enter your name"
+            required
+          >
+
+          <label for="contactEmail">Your Email</label>
+          <input
+            type="email"
+            id="contactEmail"
+            placeholder="Enter your email"
+            required
+          >
+
+          <label for="contactMessage">Your Message</label>
+          <textarea
+            id="contactMessage"
+            placeholder="Write your message here..."
+            rows="5"
+            required
+          ></textarea>
+
+          <button type="submit" class="contact-btn">
+            Send Message
+          </button>
+
+          <p id="contactSuccess" class="contact-success" hidden>
+            Demo message submitted. No message was sent to a server.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 
   </main>
+
+
+  <!-- FOOTER - MEMBER 1 -->
+
+  <footer class="site-footer">
+    <p>© 2026 Team Two | Online Food Ordering</p>
+    <p id="current-date-time"></p>
+  </footer>
+
+
+  <!-- CART NOTIFICATION -->
+
+  <div id="toast" class="toast" role="status" hidden></div>
 
 </body>
 </html>
