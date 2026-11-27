@@ -13,6 +13,83 @@ Member:
        4.까웅수산(25101154)
 
 #member1(민 엉엉 소이)
+# 1. Homepage Development (Member 1)
+
+## 1.1 Project Overview and Planning
+
+My main responsibility in this group project was developing the homepage for our online Thai food ordering website, Team Two. The main purpose of the homepage is to introduce the website to visitors, present its services, and provide easy navigation to other sections of the website.
+
+I wanted the homepage to be simple, attractive, and easy to understand. Since this is a food ordering website, I decided to use a large food image, clear headings, and noticeable buttons to encourage visitors to explore the menu and place orders.
+
+The homepage was designed mainly for customers who want to browse Thai food and order online without going through complicated steps.
+
+## 1.2 HTML Structure and Content Design
+
+I used semantic HTML elements to organize the homepage and make its structure easier to understand and maintain.
+
+The main HTML elements I used include:
+
+- `<header>` – Contains the website logo and main navigation menu.
+- `<nav>` – Provides navigation links to Home, Cart, Order, My Account, and Contact.
+- `<main>` – Contains the main content of the website.
+- `<section>` – Organizes the homepage into the hero section and feature section.
+- `<article>` – Separates the three main service features.
+- `<footer>` – Displays the website copyright information and current date and time.
+
+The homepage itself consists of two main parts. The first is the hero section, which introduces the online food ordering service with the heading "Order Your Favorite Thai Food Online", a short description, and two navigation buttons.
+
+The second part is the feature section, which highlights three main advantages of the service: Fast Delivery, Fresh Ingredients, and Authentic Recipes.
+
+I also included alternative text for the main food image to improve accessibility for users who rely on screen readers.
+
+## 1.3 CSS Design and User Interface
+
+For the visual design, I chose a dark background with orange highlights to create a modern appearance while keeping the food image as the main visual focus.
+
+The main CSS techniques I used include:
+
+- CSS Grid: Used to arrange the hero section into two columns, with the text on the left and the food image on the right.
+- Flexbox: Used to align the navigation menu, homepage buttons, and feature items.
+- Responsive Typography: Used the `clamp()` function to adjust heading and paragraph sizes depending on the screen width.
+- Background Images: Added a background image to create visual depth.
+- Hover Effects: Added transitions to buttons to make interactions feel more responsive.
+- Media Queries: Adjusted the layout for tablet and mobile screen sizes.
+
+For smaller screens, the two-column hero layout changes into a single-column layout. The feature section also changes into a vertical arrangement on mobile devices.
+
+I also used consistent spacing, rounded corners, and contrasting colors to make the interface easier to navigate.
+
+## 1.4 JavaScript Functionality
+
+Besides the HTML and CSS, I also worked on JavaScript functionality related to the website's navigation and footer.
+
+One important feature is the navigation system. I used JavaScript to control which website section is displayed when users click the navigation links.
+
+The `showPage()` function checks the URL hash and displays the corresponding section while hiding the other sections. It also updates the active navigation link so users can identify which page they are currently viewing.
+
+I used the `hashchange` event listener to detect changes in the URL and automatically update the displayed section.
+
+Another feature I implemented was the dynamic date and time in the footer. The `updateDateTime()` function uses JavaScript's `Date()` object to retrieve the current date and time. The `setInterval()` function updates this information every second.
+
+I also added a notification message for the Notifications navigation link. Since the notification feature is not fully developed, clicking it currently displays a message saying that the feature is coming soon.
+
+## 1.5 Testing and Evaluation
+
+During development, I focused on checking the homepage layout, navigation, and responsiveness.
+
+The main areas that should be checked include:
+
+1. Navigation: Clicking Home, Menu, Cart, Order, My Account, and Contact should display the correct section.
+2. Homepage Buttons: Both Order Now and View Menu should direct users to the menu section.
+3. Responsive Layout: The homepage should adjust its layout when viewed on desktop, tablet, and mobile screens.
+4. Visual Elements: The background image, food image, icons, and buttons should display correctly.
+5. Dynamic Footer: The date and time should update automatically every second.
+6. Notifications: Clicking the notification icon should display the appropriate temporary message.
+
+Overall, the homepage provides a clear introduction to the website and connects the different sections through a simple navigation system.
+
+One limitation is that the notification feature is currently a placeholder rather than a fully functional notification system. In the future, it could be improved by connecting it to actual order updates.
+
 
 #member2(아리운바타르 아리운볼)
 
